@@ -49,7 +49,7 @@ graph LR
     class SOAR cloud;
     class WManager,TheHive,Cortex,ngrok,MISP local;
     class ART,Sysmon,WAgent endpoint;
-
+```
 ## Automated Pipeline + Attack Simulation
 
 | Stage | Action | Tool | Result |
