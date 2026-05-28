@@ -49,3 +49,39 @@ graph LR
     class SOAR cloud;
     class WManager,TheHive,Cortex,ngrok,MISP local;
     class ART,Sysmon,WAgent endpoint;
+
+## Automated Pipeline + Attack Simulation
+
+| Stage | Action | Tool | Result |
+|---|---|---|---|
+| Execution | T1053.005 / T1003.001 simulated | Atomic Red Team | Sysmon telemetry generated |
+| Detection | Log correlation and alerting | Wazuh SIEM | Level 10+ High Severity Alert |
+| Ingestion | JSON payload pushed via Webhook | Splunk SOAR + ngrok | Event container created in SOAR |
+| Orchestration | Playbook logic evaluates duplicates | Splunk SOAR | Duplicate check passed |
+| Response | Auto-create ticket & send email | TheHive + SMTP App | Case provisioned, Analyst emailed |
+| Enrichment | Active observable analysis | Cortex + VirusTotal | Malicious hash (WannaCry) flagged |
+
+## Key Results
+- Bridged on-premise SOC tools with cloud-hosted automation using an `ngrok` reverse tunnel on port 9000.
+- Engineered a Splunk SOAR playbook with conditional logic to query TheHive's API and deduplicate alerts before case creation.
+- Reduced Tier-1 triage time from manual processing (minutes) to fully automated provisioning (seconds).
+- Successfully detected and enriched T1053.005 (Scheduled Task Persistence) and identified WannaCry ransomware signatures via Cortex.
+- Exported confirmed IOCs directly to MISP, automatically mapping them to MITRE ATT&CK Galaxy tags.
+
+## Tools Used
+Splunk SOAR, Wazuh (SIEM/XDR), TheHive (Incident Management), Cortex (DFIR), MISP (Threat Intelligence Platform), Sysmon, Atomic Red Team, ngrok, AWS EC2, VirtualBox
+
+## Files in This Repo
+- [Capstone Project Report](report.pdf)
+- [Wazuh Custom Integration Script](scripts/)
+- [Screenshots](images/)
+
+## Screenshots
+- Splunk SOAR Playbook Canvas
+![SOAR Playbook](images/15_Playbook_Canvas.png)
+- Auto-Created TheHive Case
+![TheHive Case](images/21_Auto_Created_Case.png)
+- Cortex Analyzer Identification
+![Cortex Results](images/24_Cortex_Enrichment.png)
+- Automated Analyst Email Notification
+![SMTP Alert](images/22_Email_Notification.png)
