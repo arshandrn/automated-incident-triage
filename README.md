@@ -72,7 +72,7 @@ graph LR
 Splunk SOAR, Wazuh (SIEM/XDR), TheHive (Incident Management), Cortex (DFIR), MISP (Threat Intelligence Platform), Sysmon, Atomic Red Team, ngrok, AWS EC2, VirtualBox
 
 ## Files in This Repo
-- [Capstone Project Report](IncidentTriage.pdf)
+- [Capstone Project Report](Incident_Triage.pdf)
 - [Wazuh Custom Integration Script](scripts/)
 - [Screenshots](images/)
 
