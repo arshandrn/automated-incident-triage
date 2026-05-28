@@ -80,9 +80,12 @@ Splunk SOAR, Wazuh (SIEM/XDR), TheHive (Incident Management), Cortex (DFIR), MIS
 - Splunk SOAR Playbook Canvas
   
 ![SOAR Playbook](Images/16_Playbook.png)
+
 - Auto-Created TheHive Case
 ![TheHive Case](Images/21_Auto_Created_Case.png)
+
 - Cortex Analyzer Identification
 ![Cortex Results](Images/29_Results_Cortex_analyzer.png)
+
 - Automated Analyst Email Notification
-![SMTP Alert](Images/27_Email_Notification.png)
+![SMTP Alert](Images/22_Email_Notification.png)
