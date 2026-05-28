@@ -1,7 +1,7 @@
 # Automated Threat Detection and Incident Triage using Splunk SOAR
 
 ## Demo Video
-Watch the full project demo: [Click here](insert-your-link-here)
+Watch the full project demo: [Click here](https://1drv.ms/v/c/ca84ccba0e93da2d/IQCOaduqe4PkSbiTWT0drfRfAS1BpGq1HGq-RDu2ThfD-TA?e=G4TGam)
 
 ## Overview
 Engineered a hybrid-cloud SOC automation pipeline to achieve zero-touch incident triage. Simulated MITRE ATT&CK techniques on a local endpoint and routed the detections to a cloud-hosted SOAR platform. The automated playbook deduplicated alerts, dynamically provisioned analyst tickets in a local IR platform via reverse tunnels, ran threat intel enrichment, and dispatched email notifications in seconds.
