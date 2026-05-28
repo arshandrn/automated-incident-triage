@@ -65,7 +65,7 @@ graph LR
 - Bridged on-premise SOC tools with cloud-hosted automation using an `ngrok` reverse tunnel on port 9000.
 - Engineered a Splunk SOAR playbook with conditional logic to query TheHive's API and deduplicate alerts before case creation.
 - Reduced Tier-1 triage time from manual processing (minutes) to fully automated provisioning (seconds).
-- Successfully detected and enriched T1053.005 (Scheduled Task Persistence) and identified WannaCry ransomware signatures via Cortex.
+- Successfully detected and enriched T1053.005 (Scheduled Task Persistence) and identified signatures via Cortex.
 - Exported confirmed IOCs directly to MISP, automatically mapping them to MITRE ATT&CK Galaxy tags.
 
 ## Tools Used
