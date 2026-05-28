@@ -5,10 +5,9 @@ import requests
 import logging
 import urllib3
 
-# Suppress insecure HTTPS warnings for lab environments
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Set up logging to write to Wazuh's standard integration log
+# write to Wazuh integration log
 logging.basicConfig(filename='/var/ossec/logs/integrations.log', 
                     level=logging.INFO, 
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -30,12 +29,10 @@ def main():
         logger.error(f"Error reading the Wazuh alert file: {e}")
         sys.exit(1)
 
-    # --- 1. EXTRACT CORE DATA ---
     rule_desc = wazuh_alert.get('rule', {}).get('description', 'Unknown Wazuh Alert')
     agent_name = wazuh_alert.get('agent', {}).get('name', 'Unknown Agent')
     wazuh_level = int(wazuh_alert.get('rule', {}).get('level', 0))
     
-
     if wazuh_level >= 10:
         soar_severity = "high"
     elif wazuh_level >= 5:
@@ -47,14 +44,10 @@ def main():
     if not src_ip:
         src_ip = wazuh_alert.get('data', {}).get('winlog', {}).get('event_data', {}).get('SourceIp', 'No IP Found')
 
-    # --- 2. BUILD THE TEXT DESCRIPTION FOR THEHIVE ---
     description_text = "### Wazuh Alert Details\n\n"
-    
-    # --- CONSOLIDATED OBSERVABLES SUMMARY ---
     description_text += "**🚨 Extracted Observables:**\n"
     description_text += f"- **Compromised Hostname:** {agent_name}\n"
     description_text += f"- **Attacker IP:** {src_ip}\n\n"
-    # ----------------------------------------
     
     if 'timestamp' in wazuh_alert:
         description_text += f"**Timestamp:** {wazuh_alert.get('timestamp')}\n"
@@ -69,7 +62,6 @@ def main():
         for k, v in wazuh_alert['agent'].items():
             description_text += f"- {k}: {str(v)}\n"
 
-    # --- 3. PACKAGE THE PAYLOAD ---
     soar_payload = {
         "name": f"Wazuh: {rule_desc}",
         "label": "events", 
@@ -92,7 +84,6 @@ def main():
         ]
     }
 
-    # --- 4. SEND TO SPLUNK SOAR ---
     headers = {
         'ph-auth-token': soar_api_key,
         'Content-Type': 'application/json'
